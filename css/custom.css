@@ -1,0 +1,229 @@
+/* MagicMirror² Custom CSS - Nightshadow UI HUD Theme
+ * 
+ * Features:
+ * - HUD Neon Red header title styling ("Nightshadow UI HUD")
+ * - High-end Glassmorphism frosted card panels with neon cyan & purple glowing borders
+ * - Preserved background artwork (nightshadow.png) with clear central wolf paw HUD
+ * - Customized typography & status bar pill container
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+:root {
+  --hud-neon-red: #ff2e55;
+  --hud-neon-blue: #38bdf8;
+  --hud-neon-purple: #a855f7;
+  --hud-card-bg: rgba(10, 16, 32, 0.68);
+  --hud-card-border: rgba(56, 189, 248, 0.4);
+  --hud-text-main: #f1f5f9;
+  --hud-text-dim: #94a3b8;
+}
+
+/* ----------------------------------------------------
+ * 1. 全局背景与基础设置
+ * ---------------------------------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #040712 url('../assets/nightshadow.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
+  color: var(--hud-text-main);
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------
+ * 2. 区域四角定位与宽度控制 (确保避开中央狼爪标志)
+ * ---------------------------------------------------- */
+.region.top.right,
+.region.top.left,
+.region.bottom.left,
+.region.bottom.right {
+  width: 32%;
+  max-width: 460px;
+  padding: 10px;
+}
+
+.region.top.left,
+.region.bottom.left {
+  left: 25px;
+}
+
+.region.top.right,
+.region.bottom.right {
+  right: 25px;
+}
+
+/* ----------------------------------------------------
+ * 3. 顶部中央标题样式 (Nightshadow UI HUD)
+ * ---------------------------------------------------- */
+.region.top.center .helloworld,
+.region.top.bar .helloworld {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.region.top.center .helloworld header,
+.region.top.center .helloworld .normal,
+.region.top.bar .helloworld .normal {
+  font-family: 'Orbitron', 'Rajdhani', sans-serif !important;
+  font-size: 34px !important;
+  font-weight: 900 !important;
+  color: var(--hud-neon-red) !important;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 
+    0 0 8px rgba(255, 46, 85, 0.9),
+    0 0 20px rgba(255, 46, 85, 0.6),
+    0 0 35px rgba(255, 0, 85, 0.4);
+  padding: 0;
+  margin: 0;
+}
+
+/* ----------------------------------------------------
+ * 4. 模块毛玻璃 HUD 卡片面板 (Glassmorphism Cards)
+ * ---------------------------------------------------- */
+.module {
+  background: var(--hud-card-bg);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid var(--hud-card-border);
+  border-radius: 14px;
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.65),
+    inset 0 0 20px rgba(56, 189, 248, 0.12),
+    0 0 20px rgba(168, 85, 247, 0.25);
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 顶部炫彩渐变微光线条 */
+.module::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--hud-neon-blue), var(--hud-neon-purple), transparent);
+  opacity: 0.8;
+}
+
+.module:hover {
+  border-color: rgba(147, 197, 253, 0.8);
+  box-shadow: 
+    0 12px 40px 0 rgba(0, 0, 0, 0.8),
+    inset 0 0 25px rgba(56, 189, 248, 0.25),
+    0 0 30px rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------
+ * 5. 模块标题栏样式 (Module Headers)
+ * ---------------------------------------------------- */
+.module-header {
+  font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+  color: var(--hud-neon-blue) !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid rgba(56, 189, 248, 0.4) !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 14px !important;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+/* ----------------------------------------------------
+ * 6. 文本与细节增强
+ * ---------------------------------------------------- */
+.small, .normal, .large {
+  font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
+  color: var(--hud-text-main);
+}
+
+.dimmed {
+  color: var(--hud-text-dim) !important;
+}
+
+.bright {
+  color: #ffffff !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* 日历列表符号与条目 */
+.calendar .event {
+  padding: 4px 0;
+}
+
+.calendar .symbol {
+  color: var(--hud-neon-blue);
+  margin-right: 8px;
+}
+
+/* 天气图标与温度高亮 */
+.weather .weather-icon {
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6));
+}
+
+.weather .temp {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+}
+
+/* 新闻列表文本 */
+.newsfeed .title {
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+/* ----------------------------------------------------
+ * 7. 底部硬件与网络状态栏 (CPU / RAM / Temp / Wi-Fi)
+ * ---------------------------------------------------- */
+.region.bottom.bar,
+.region.bottom.center {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  min-width: 650px;
+  max-width: 900px;
+  z-index: 100;
+}
+
+.region.bottom.bar .module,
+.region.bottom.center .module {
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(8, 14, 28, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 0 15px rgba(56, 189, 248, 0.2),
+    0 0 25px rgba(56, 189, 248, 0.3);
+  padding: 12px 32px;
+  border-radius: 30px; /* 胶囊型 HUD 状态栏 */
+}
+
+.region.bottom.bar .MMM-SystemStats,
+.region.bottom.bar .helloworld,
+.region.bottom.center .MMM-SystemStats {
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--hud-neon-blue);
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
